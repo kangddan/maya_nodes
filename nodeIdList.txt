@@ -1,7 +1,7 @@
 0x00141B80  # MathNode
 0x00141B81  # Matrix2Vectors
 0x00141B82  # Vectors2Matrix
-0x00141B83
+0x00141B83  # CatenarySolver
 0x00141B84
 0x00141B85
 0x00141B86
@@ -255,3 +255,4 @@
 0x00141C7E
 
 0x00141C7F
+
