@@ -13,15 +13,8 @@ MObject MathNode::INPUT2;
 MObject MathNode::OUTPUT;
 MObject MathNode::FUNCTION;
 
-
-MathNode::MathNode()
-{
-}
-
-MathNode::~MathNode()
-{
-}
-
+MathNode::MathNode() :MPxNode() {}
+MathNode::~MathNode() {}
 
 MStatus MathNode::compute(const MPlug& plug, MDataBlock& dataBlock)
 {
@@ -108,3 +101,4 @@ MStatus MathNode::initialize()
 	return MS::kSuccess;
 
 }
+
