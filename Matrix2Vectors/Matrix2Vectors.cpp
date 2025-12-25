@@ -5,7 +5,7 @@
 #include <maya/MGlobal.h>
 #include <maya/MMatrix.h>
 
-MTypeId Matrix2Vectors::TYPE_ID{ 0x001226F0 };
+MTypeId Matrix2Vectors::TYPE_ID{ 0x00141B81 };
 MString Matrix2Vectors::TYPE_NAME{ "matrix2Vectors" };
 
 MObject Matrix2Vectors::IN_MATRIX;
@@ -89,5 +89,6 @@ MStatus Matrix2Vectors::compute(const MPlug& plug, MDataBlock& dataBlock)
 	return MS::kSuccess;
 
 };
+
 
 
