@@ -102,7 +102,7 @@ MStatus CatenarySolver::compute(const MPlug& plug, MDataBlock& dataBlock)
 
 		if (distance >= length)
 		{
-			for (unsigned index{0}; index < itemCount; ++index)
+			for (unsigned int index{0}; index < itemCount; ++index)
 			{
 				double t = static_cast<double>(index) / (itemCount - 1);
 				MVector pos = poseA + directionVec * t;
@@ -123,7 +123,7 @@ MStatus CatenarySolver::compute(const MPlug& plug, MDataBlock& dataBlock)
 				double extraHalfLength = (totalLength - std::abs(verticalOffset)) * 0.5;
 				double lowestY = std::min(poseA.y, poseB.y) - extraHalfLength;
 
-				for (unsigned index{ 0 }; index < itemCount; ++index)
+				for (unsigned int index{ 0 }; index < itemCount; ++index)
 				{
 					double paramT{ static_cast<double>(index) / (itemCount - 1) };
 					double poseY = (paramT <= 0.5)
@@ -138,7 +138,7 @@ MStatus CatenarySolver::compute(const MPlug& plug, MDataBlock& dataBlock)
 				double minA{ 1.0e-3 };
 				double maxA{ std::max(2000.0, ((horizontalDist * horizontalDist) / (8.0 * std::max(minA, totalLength - distance)))) };
 
-				for (unsigned index{ 0 }; index < CatenarySolver::MAX_ITER; ++index)
+				for (unsigned int index{ 0 }; index < CatenarySolver::MAX_ITER; ++index)
 				{
 					double midA = 0.5 * (minA + maxA);
 					double currentHorizontalLen = 2.0 * midA * std::sinh(horizontalDist / (2.0 * midA));
@@ -160,7 +160,7 @@ MStatus CatenarySolver::compute(const MPlug& plug, MDataBlock& dataBlock)
 
 				const MVector flatDirection{ MVector(_x, 0.0, _z).normal()};
 
-				for (unsigned index{ 0 }; index < itemCount; ++index)
+				for (unsigned int index{ 0 }; index < itemCount; ++index)
 				{
 					double paramT{ static_cast<double>(index) / (itemCount - 1) };
 					double currentHorizontalPos = horizontalDist * paramT;
@@ -176,7 +176,7 @@ MStatus CatenarySolver::compute(const MPlug& plug, MDataBlock& dataBlock)
 		MArrayDataHandle  outArrayHandle = dataBlock.outputArrayValue(CatenarySolver::OUTPUTS);
 		MArrayDataBuilder arrayBuilder   = outArrayHandle.builder();
 
-		for (unsigned index{ 0 }; index < itemCount; ++index)
+		for (unsigned int index{ 0 }; index < itemCount; ++index)
 		{
 			MDataHandle outHandle = arrayBuilder.addElement(index);
 			outHandle.set3Double(poseList[index].x, poseList[index].y, poseList[index].z);
@@ -191,3 +191,4 @@ MStatus CatenarySolver::compute(const MPlug& plug, MDataBlock& dataBlock)
 
 
 };
+
