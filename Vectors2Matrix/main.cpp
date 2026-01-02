@@ -45,6 +45,7 @@ MStatus uninitializePlugin(MObject pluginObj)
         return status;
     }
 
-    return(status);
+    return status;
 
 }
+
