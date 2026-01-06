@@ -59,7 +59,7 @@ MStatus CurveNaturalWeight::initialize()
 	
 	CurveNaturalWeight::attributeAffects(CurveNaturalWeight::INPUT_CURVE, CurveNaturalWeight::OUTPUT_WEIGHT);
 	CurveNaturalWeight::attributeAffects(CurveNaturalWeight::WEIGHT, CurveNaturalWeight::OUTPUT_WEIGHT);
-
+	CurveNaturalWeight::setupUI();
 	return MS::kSuccess;
 }
 
@@ -99,5 +99,30 @@ MStatus CurveNaturalWeight::compute(const MPlug& plug, MDataBlock& dataBlock)
 
 	dataBlock.setClean(plug);
 	return MS::kSuccess;
-
 };
+
+void CurveNaturalWeight::setupUI()
+{
+
+	const char* melCommand = R"mel(
+    global proc AEcurveNaturalWeightTemplate(string $nodeName)
+    {
+        editorTemplate -beginScrollLayout;
+
+            editorTemplate -beginLayout "Main" -collapse 0;
+                editorTemplate -callCustom ("AEinputNew \"In Curve\"") 
+                                           ("AEinputReplace \"In Curve\"") 
+                                            "inCurve";  
+                editorTemplate -addControl "inWeight";
+				editorTemplate -addSeparator;
+                editorTemplate -addControl "outWeight";
+            editorTemplate -endLayout;
+    
+            AEdependNodeTemplate $nodeName;
+            editorTemplate -addExtraControls;
+        editorTemplate -endScrollLayout;
+    }
+    )mel";
+
+	MGlobal::executeCommandOnIdle(melCommand);
+}
