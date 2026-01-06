@@ -21,4 +21,5 @@ public:
 	static void* creator();
 	static MStatus initialize();
 
+	static void setupUI();
 };
