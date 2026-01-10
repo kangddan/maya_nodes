@@ -19,7 +19,7 @@
 0x00141B92  # kRayCollision
 0x00141B93  # kChainRoll
 0x00141B94  # kNoFlipSplineSolver
-0x00141B95
+0x00141B95  # kTwistNode
 0x00141B96
 0x00141B97
 0x00141B98
@@ -255,6 +255,7 @@
 0x00141C7E
 
 0x00141C7F
+
 
 
 
