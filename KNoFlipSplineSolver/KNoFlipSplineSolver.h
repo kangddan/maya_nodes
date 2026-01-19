@@ -60,10 +60,10 @@ public:
 	virtual MStatus compute(const MPlug& plug, MDataBlock& dataBlock) override;
 	static  void* creator();
 	static  MStatus initialize();
-
+	SchedulingType schedulingType() const override { return SchedulingType::kParallel; }
 	static MMatrix solveNextMatrix(const MVector& prevV1,
-		const MVector& curV1,
-		const MMatrix& prevMatrix);
+								   const MVector& curV1,
+								   const MMatrix& prevMatrix);
 
 
 	static std::vector<Segment>  createMainData(const std::vector<double>& handleParams,
@@ -73,6 +73,7 @@ public:
 	);
 
 	static void setupUI();
+
 
 
 };
