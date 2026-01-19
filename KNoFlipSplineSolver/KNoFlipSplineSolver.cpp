@@ -451,8 +451,11 @@ MStatus KNoFlipSplineSolver::compute(const MPlug& plug, MDataBlock& dataBlock)
 		int index{ 0 };
 		for (const double weight : blendWeights)
 		{
-			MQuaternion quat1 = MTransformationMatrix{ startMatrices[index] }.rotation();
-			MQuaternion quat2 = MTransformationMatrix{ endMatrices[index] }.rotation();
+			MQuaternion quat1{};
+			MQuaternion quat2{};
+			
+			quat1 = startMatrices[index];
+			quat2 = endMatrices[index];
 
 			MMatrix outMatrix = slerp(quat1, quat2, weight).asMatrix();
 			const MPoint& point = points[index];
@@ -485,4 +488,5 @@ MStatus KNoFlipSplineSolver::compute(const MPlug& plug, MDataBlock& dataBlock)
 
 	dataBlock.setClean(plug);
 	return MS::kSuccess;
+
 };
