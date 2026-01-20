@@ -204,12 +204,14 @@ MStatus KSpaceSwitchMatrix::compute(const MPlug& plug, MDataBlock& dataBlock)
 
 	for (int index{ 0 }; index < numtargetHandle; ++index)
 	{
-		targetHandle.jumpToArrayElement(index);
 		MDataHandle elementHandle = targetHandle.inputValue();
 		double		weight		  = elementHandle.child(KSpaceSwitchMatrix::WEIGHT).asDouble();
-
+		
 		if (weight < KSpaceSwitchMatrix::EPS)
+		{
+			targetHandle.next();
 			continue;
+		}
 
 		MMatrix targetMatrix = elementHandle.child(KSpaceSwitchMatrix::TARGET_MATRIX).asMatrix();
 		MMatrix offsetMatrix = elementHandle.child(KSpaceSwitchMatrix::OFFSET_MATRIX).asMatrix();
@@ -267,6 +269,7 @@ MStatus KSpaceSwitchMatrix::compute(const MPlug& plug, MDataBlock& dataBlock)
 		matrices.append(outMatrix);
 		weights.append(weight);
 		totalWeight += weight;
+		targetHandle.next();
 	}
 
 	if (matrices.length() == 0)
@@ -338,3 +341,4 @@ MStatus KSpaceSwitchMatrix::compute(const MPlug& plug, MDataBlock& dataBlock)
 	dataBlock.setClean(plug);
 	return MS::kSuccess;
 }
+
